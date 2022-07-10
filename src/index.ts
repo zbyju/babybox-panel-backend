@@ -19,7 +19,7 @@ async function main() {
   app.use(process.env.API_PREFIX + "/thermal", thermalRoute);
 
   app.listen(port, () => {
-    console.log(`Babybox backed listening on port ${port}`);
+    console.log(`Babybox backend listening on port ${port}`);
   });
 }
 
