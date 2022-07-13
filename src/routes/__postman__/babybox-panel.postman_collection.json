@@ -1,0 +1,428 @@
+{
+	"info": {
+		"_postman_id": "0836617f-a3fa-497c-85ad-bcff69fa4ef1",
+		"name": "babybox-panel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9543581"
+	},
+	"item": [
+		{
+			"name": "Engine",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "GET data - no query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/engine/data",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"engine",
+										"data"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET data - query, no url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/engine/data?test=123&ur=bad&l=bad",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"engine",
+										"data"
+									],
+									"query": [
+										{
+											"key": "test",
+											"value": "123"
+										},
+										{
+											"key": "ur",
+											"value": "bad"
+										},
+										{
+											"key": "l",
+											"value": "bad"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET data - query, empty url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406, 408]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/engine/data?url=",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"engine",
+										"data"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET data - query, wrong url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([408, 400, 404, 406]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/engine/data?url=http://thisurldoesnotexist12345xd.com",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"engine",
+										"data"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "http://thisurldoesnotexist12345xd.com"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET data - OK",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/engine/data?url={{engineUrl}}",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"engine",
+										"data"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "{{engineUrl}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": []
+				},
+				{
+					"name": "UPDATE",
+					"item": []
+				},
+				{
+					"name": "DELETE",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "Thermal",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "GET data - no query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/thermal/data",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"thermal",
+										"data"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET data - query, no url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/thermal/data?test=123&ur=bad&l=bad",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"thermal",
+										"data"
+									],
+									"query": [
+										{
+											"key": "test",
+											"value": "123"
+										},
+										{
+											"key": "ur",
+											"value": "bad"
+										},
+										{
+											"key": "l",
+											"value": "bad"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET data - query, empty url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406, 408]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/thermal/data?url=",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"thermal",
+										"data"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET data - query, wrong url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([408, 400, 404, 406]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/thermal/data?url=http://thisurldoesnotexist12345xd.com",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"thermal",
+										"data"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "http://thisurldoesnotexist12345xd.com"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET data - OK",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/thermal/data?url={{thermalUrl}}",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"thermal",
+										"data"
+									],
+									"query": [
+										{
+											"key": "url",
+											"value": "{{thermalUrl}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": []
+				},
+				{
+					"name": "UPDATE",
+					"item": []
+				},
+				{
+					"name": "DELETE",
+					"item": []
+				}
+			]
+		}
+	]
+}
