@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 import * as express from "express";
 import * as morgan from "morgan";
+import * as cors from "cors";
 import { router as engineRoute } from "./routes/engineRoute";
 import { router as thermalRoute } from "./routes/thermalRoute";
 
@@ -13,6 +14,9 @@ async function main() {
 
   // Setup logger - morgan
   app.use(morgan("dev"));
+
+  // Allow cors
+  app.use(cors());
 
   //Routes
   app.use(process.env.API_PREFIX + "/engine", engineRoute);
