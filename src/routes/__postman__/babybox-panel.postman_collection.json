@@ -13,156 +13,6 @@
 					"name": "GET",
 					"item": [
 						{
-							"name": "GET data - no query",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Unsuccessful request\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406]);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseApiUrl}}/engine/data",
-									"host": [
-										"{{baseApiUrl}}"
-									],
-									"path": [
-										"engine",
-										"data"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET data - query, no url",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Unsuccessful request\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406]);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseApiUrl}}/engine/data?test=123&ur=bad&l=bad",
-									"host": [
-										"{{baseApiUrl}}"
-									],
-									"path": [
-										"engine",
-										"data"
-									],
-									"query": [
-										{
-											"key": "test",
-											"value": "123"
-										},
-										{
-											"key": "ur",
-											"value": "bad"
-										},
-										{
-											"key": "l",
-											"value": "bad"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET data - query, empty url",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Unsuccessful request\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406, 408]);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseApiUrl}}/engine/data?url=",
-									"host": [
-										"{{baseApiUrl}}"
-									],
-									"path": [
-										"engine",
-										"data"
-									],
-									"query": [
-										{
-											"key": "url",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET data - query, wrong url",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Unsuccessful request\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([408, 400, 404, 406]);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseApiUrl}}/engine/data?url=http://thisurldoesnotexist12345xd.com",
-									"host": [
-										"{{baseApiUrl}}"
-									],
-									"path": [
-										"engine",
-										"data"
-									],
-									"query": [
-										{
-											"key": "url",
-											"value": "http://thisurldoesnotexist12345xd.com"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "GET data - OK",
 							"event": [
 								{
@@ -181,19 +31,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseApiUrl}}/engine/data?url={{engineUrl}}",
+									"raw": "{{baseApiUrl}}/engine/data",
 									"host": [
 										"{{baseApiUrl}}"
 									],
 									"path": [
 										"engine",
 										"data"
-									],
-									"query": [
-										{
-											"key": "url",
-											"value": "{{engineUrl}}"
-										}
 									]
 								}
 							},
@@ -222,14 +66,14 @@
 					"name": "GET",
 					"item": [
 						{
-							"name": "GET data - no query",
+							"name": "GET data - OK",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
 											"pm.test(\"Unsuccessful request\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406]);\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
 											"});"
 										],
 										"type": "text/javascript"
@@ -251,162 +95,6 @@
 								}
 							},
 							"response": []
-						},
-						{
-							"name": "GET data - query, no url",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Unsuccessful request\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406]);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseApiUrl}}/thermal/data?test=123&ur=bad&l=bad",
-									"host": [
-										"{{baseApiUrl}}"
-									],
-									"path": [
-										"thermal",
-										"data"
-									],
-									"query": [
-										{
-											"key": "test",
-											"value": "123"
-										},
-										{
-											"key": "ur",
-											"value": "bad"
-										},
-										{
-											"key": "l",
-											"value": "bad"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET data - query, empty url",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Unsuccessful request\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([400, 404, 406, 408]);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseApiUrl}}/thermal/data?url=",
-									"host": [
-										"{{baseApiUrl}}"
-									],
-									"path": [
-										"thermal",
-										"data"
-									],
-									"query": [
-										{
-											"key": "url",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET data - query, wrong url",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Unsuccessful request\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([408, 400, 404, 406]);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseApiUrl}}/thermal/data?url=http://thisurldoesnotexist12345xd.com",
-									"host": [
-										"{{baseApiUrl}}"
-									],
-									"path": [
-										"thermal",
-										"data"
-									],
-									"query": [
-										{
-											"key": "url",
-											"value": "http://thisurldoesnotexist12345xd.com"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET data - OK",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Unsuccessful request\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseApiUrl}}/thermal/data?url={{thermalUrl}}",
-									"host": [
-										"{{baseApiUrl}}"
-									],
-									"path": [
-										"thermal",
-										"data"
-									],
-									"query": [
-										{
-											"key": "url",
-											"value": "{{thermalUrl}}"
-										}
-									]
-								}
-							},
-							"response": []
 						}
 					]
 				},
@@ -421,6 +109,1020 @@
 				{
 					"name": "DELETE",
 					"item": []
+				}
+			]
+		},
+		{
+			"name": "Units",
+			"item": [
+				{
+					"name": "Actions",
+					"item": [
+						{
+							"name": "Make Action",
+							"item": [
+								{
+									"name": "GET Open doors",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Unsuccessful request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseApiUrl}}/units/actions/openDoors",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"actions",
+												"openDoors"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GET Open service doors",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Unsuccessful request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseApiUrl}}/units/actions/openServiceDoors",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"actions",
+												"openServiceDoors"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GET Unknown action",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Unsuccessful request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400, 404]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseApiUrl}}/units/actions/nonexistentaction",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"actions",
+												"nonexistentaction"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Settings",
+					"item": [
+						{
+							"name": "GET Settings",
+							"item": [
+								{
+									"name": "Wrong unit",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings?unit=wrong",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											],
+											"query": [
+												{
+													"key": "unit",
+													"value": "wrong"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Success engine",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings?unit=engine",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											],
+											"query": [
+												{
+													"key": "unit",
+													"value": "engine"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Success thermal",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings?unit=thermal",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											],
+											"query": [
+												{
+													"key": "unit",
+													"value": "thermal"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Success both",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "POST Settings",
+							"item": [
+								{
+									"name": "Empty body",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong body",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "wrong body"
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong data",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"wrong\": \"data\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong format",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"index\": 1,\r\n    \"value\": 10,\r\n    \"unit\": \"engine\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong format 2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[{\r\n    \"index\": 1,\r\n    \"value\": 10,\r\n    \"unit\": \"engine\"\r\n}]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong array data",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"wrong\": \"data\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Missing index",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"value\": 10,\r\n    \"unit\": \"engine\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Missing value",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 10,\r\n    \"unit\": \"engine\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Missing unit",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 10,\r\n    \"value\": 5\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong type index",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": \"10\",\r\n    \"value\": 5,\r\n    \"unit\": \"engine\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong type index 2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 10.5,\r\n    \"value\": 5,\r\n    \"unit\": \"engine\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong type index one of array",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 10,\r\n    \"value\": 5,\r\n    \"unit\": \"engine\"\r\n},{\r\n    \"index\": \"10\",\r\n    \"value\": 5,\r\n    \"unit\": \"engine\"\r\n},{\r\n    \"index\": 10,\r\n    \"value\": 5,\r\n    \"unit\": \"thermal\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong type value",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 10,\r\n    \"value\": \"5\",\r\n    \"unit\": \"engine\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong type value one of array",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 10,\r\n    \"value\": 5,\r\n    \"unit\": \"engine\"\r\n},{\r\n    \"index\": 10,\r\n    \"value\": \"5\",\r\n    \"unit\": \"engine\"\r\n},{\r\n    \"index\": 10,\r\n    \"value\": 5,\r\n    \"unit\": \"thermal\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong type unit",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 10,\r\n    \"value\": 5,\r\n    \"unit\": \"unit\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Wrong type unit one of array",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 10,\r\n    \"value\": 5,\r\n    \"unit\": \"engine\"\r\n},{\r\n    \"index\": 10,\r\n    \"value\": 5,\r\n    \"unit\": \"unit\"\r\n},{\r\n    \"index\": 10,\r\n    \"value\": 5,\r\n    \"unit\": \"thermal\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Success engine",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, ]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 107,\r\n    \"value\": 3800,\r\n    \"unit\": \"engine\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Success thermal",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 104,\r\n    \"value\": 3800,\r\n    \"unit\": \"thermal\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Success both",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful POST request\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"settings\": [{\r\n    \"index\": 107,\r\n    \"value\": 3600,\r\n    \"unit\": \"engine\"\r\n},{\r\n    \"index\": 104,\r\n    \"value\": 3700,\r\n    \"unit\": \"thermal\"\r\n}]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseApiUrl}}/units/settings",
+											"host": [
+												"{{baseApiUrl}}"
+											],
+											"path": [
+												"units",
+												"settings"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
 				}
 			]
 		}
