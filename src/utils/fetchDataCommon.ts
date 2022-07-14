@@ -2,9 +2,10 @@ import { fetchFromUrl } from "../fetch/fetch";
 import {
   CommonDataResponse,
   EngineDataBodyRequest,
+  Setting,
 } from "../types/request.types";
 import { Action, Unit } from "../types/units.types";
-import { actionToUrl } from "./actions";
+import { actionToUrl, unitToIp } from "./url";
 
 export async function fetchDataCommon(
   unit: Unit,
@@ -52,4 +53,32 @@ export async function fetchAction(action: Action): Promise<CommonDataResponse> {
       msg: "Request timedout. The URL/IP might be wrong, check the config.",
     };
   }
+}
+
+export async function fetchSettings(
+  settings: Setting[],
+  tryNumber = 1,
+  timeout = 5000
+) {
+  settings.forEach(async (s) => {
+    const ip = unitToIp(s.unit);
+    const timestamp = new Date().getTime();
+    const result = await updateSettings(
+      `http://${ip}/sdscep?sys141=${s.index}&${timestamp}`,
+      `http://${ip}/sdscep?sys140=${s.value}&${timestamp}`
+    );
+    console.log(result);
+  });
+}
+
+async function updateSettings(
+  urlIndex: string,
+  urlValue: string,
+  timeout = 5000
+): Promise<boolean> {
+  const indexFetch = fetchFromUrl(urlIndex, timeout);
+  const valueFetch = fetchFromUrl(urlValue, timeout);
+  const result = await Promise.all([indexFetch, valueFetch]);
+  console.log(result);
+  return true;
 }

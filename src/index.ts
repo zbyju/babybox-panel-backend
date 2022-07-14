@@ -4,6 +4,7 @@ import * as morgan from "morgan";
 import * as cors from "cors";
 import { router as engineRoute } from "./routes/engineRoute";
 import { router as thermalRoute } from "./routes/thermalRoute";
+import { router as unitsRoute } from "./routes/unitsRoute";
 
 async function main() {
   // .env file load
@@ -18,7 +19,11 @@ async function main() {
   // Allow cors
   app.use(cors());
 
+  // Parse JSON in POST requests
+  app.use(express.json());
+
   //Routes
+  app.use(process.env.API_PREFIX + "/units", unitsRoute);
   app.use(process.env.API_PREFIX + "/engine", engineRoute);
   app.use(process.env.API_PREFIX + "/thermal", thermalRoute);
 

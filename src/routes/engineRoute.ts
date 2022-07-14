@@ -20,14 +20,3 @@ router.get("/data", async (req: Request, res: Response) => {
     });
   }
 });
-
-router.get("/actions/:action", async (req, res) => {
-  const action = stringToAction(req.params.action);
-
-  if (action === undefined) {
-    return res.status(400).send({ msg: "Unknown action" });
-  }
-
-  const response = await fetchAction(Action.OpenDoors);
-  return res.status(response.status).send({ msg: response.msg });
-});
