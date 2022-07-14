@@ -1,8 +1,11 @@
+import { isFunction } from "util";
 import { fetchFromUrl } from "../fetch/fetch";
 import {
   CommonDataResponse,
   CommonResponse,
   EngineDataBodyRequest,
+  GetUnitSettingsRequest,
+  isInstanceOfGetUnitSettingsRequest,
   Setting,
   SettingResult,
 } from "../types/request.types";
@@ -37,6 +40,63 @@ export async function fetchDataCommon(
   }
 }
 
+export async function fetchSettings(
+  query: unknown
+): Promise<CommonDataResponse> {
+  if (!isInstanceOfGetUnitSettingsRequest(query)) {
+    return {
+      status: 400,
+      msg: "Unit was specified, but it is wrong. Expected values are: 'engine' or 'thermal'.",
+    };
+  }
+  const {
+    unit = "both",
+    timeout = parseInt(process.env.DEFAULT_FETCH_TIMEOUT) || 5000,
+  } = query as GetUnitSettingsRequest;
+
+  const timestamp = new Date().getTime();
+
+  const res: any = { engine: null, thermal: null };
+
+  if (unit === "engine" || unit === "both") {
+    const url = `http://${unitToIp(
+      Unit.Engine
+    )}/get_sys[100]?rn=16&${timestamp}`;
+
+    try {
+      const result = await fetchFromUrl(url, timeout);
+      res.engine = result.data;
+    } catch (err) {
+      return {
+        status: 500,
+        msg: "There was an error when fetching settings from engine unit.",
+      };
+    }
+  }
+
+  if (unit === "thermal" || unit === "both") {
+    const url = `http://${unitToIp(
+      Unit.Thermal
+    )}/get_sys[100]?rn=16&${timestamp}`;
+
+    try {
+      const result = await fetchFromUrl(url, timeout);
+      res.thermal = result.data;
+    } catch (err) {
+      return {
+        status: 500,
+        msg: "There was an error when fetching settings from thermal unit.",
+      };
+    }
+  }
+
+  return {
+    status: 200,
+    msg: "Successfully fetched settings.",
+    data: res,
+  };
+}
+
 export async function fetchAction(action: Action): Promise<CommonDataResponse> {
   const timeout = parseInt(process.env.DEFAULT_FETCH_TIMEOUT) || 5000;
 
@@ -57,7 +117,7 @@ export async function fetchAction(action: Action): Promise<CommonDataResponse> {
   }
 }
 
-export async function fetchSettings(
+export async function updateSettings(
   settings: Setting[],
   tryNumber = 5,
   timeout = 5000
@@ -69,7 +129,7 @@ export async function fetchSettings(
 
     // Try to override settings tryNumber of times
     while (!result && tryNumber > 0) {
-      result = await updateSettings(
+      result = await updateSetting(
         `http://${ip}/sdscep?sys141=${s.index}&${timestamp}`,
         `http://${ip}/sdscep?sys140=${s.value}&${timestamp}`,
         `http://${ip}/get_sys[100]?rn=16&${timestamp}`,
@@ -85,7 +145,7 @@ export async function fetchSettings(
   return Promise.all(results);
 }
 
-async function updateSettings(
+async function updateSetting(
   urlIndex: string,
   urlValue: string,
   urlVerification: string,

@@ -8,6 +8,33 @@ export interface ThermalDataBodyRequest {
   timeout?: number;
 }
 
+export interface PostUnitSettingsBodyRequest {
+  settings: Setting[];
+  options?: {
+    timeout?: number;
+  };
+}
+
+export function isInstanceOfPostUnitSettingsBodyRequest(
+  object: any
+): object is PostUnitSettingsBodyRequest {
+  return "settings" in object && isInstanceOfArraySetting(object.settings);
+}
+
+export interface GetUnitSettingsRequest {
+  unit?: Unit;
+  timeout?: number;
+}
+
+export function isInstanceOfGetUnitSettingsRequest(
+  object: any
+): object is GetUnitSettingsRequest {
+  if (object.unit && object.unit !== "engine" && object.unit !== "thermal") {
+    return false;
+  }
+  return true;
+}
+
 export interface CommonResponse {
   msg: string;
   status: number;

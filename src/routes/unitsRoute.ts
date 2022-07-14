@@ -2,34 +2,18 @@ import * as express from "express";
 import { Request, Response } from "express";
 import {
   CommonSettingsResponse,
-  isInstanceOfArraySetting,
+  isInstanceOfPostUnitSettingsBodyRequest,
   SettingResult,
 } from "../types/request.types";
 import { Action, Unit } from "../types/units.types";
 import { stringToAction } from "../utils/actions";
 import {
   fetchAction,
-  fetchDataCommon,
   fetchSettings,
+  updateSettings,
 } from "../utils/fetchDataCommon";
 
 export const router = express.Router();
-
-router.get("/data", async (req: Request, res: Response) => {
-  const response = await fetchDataCommon(Unit.Thermal, req.query);
-
-  if (response.data) {
-    return res.status(response.status).send({
-      msg: response.msg,
-      data: response.data,
-    });
-  } else {
-    return res.status(response.status).send({
-      msg: response.msg,
-      data: response.data,
-    });
-  }
-});
 
 router.get("/actions/:action", async (req, res) => {
   const action = stringToAction(req.params.action);
@@ -42,14 +26,26 @@ router.get("/actions/:action", async (req, res) => {
   return res.status(response.status).send({ msg: response.msg });
 });
 
+router.get("/settings", async (req, res) => {
+  const response = await fetchSettings(req.query);
+
+  return res
+    .status(response.status)
+    .send({ msg: response.msg, data: response.data });
+});
+
 router.put("/settings", async (req, res) => {
-  if (!isInstanceOfArraySetting(req.body)) {
+  if (!isInstanceOfPostUnitSettingsBodyRequest(req.body)) {
     return res.status(400).send({
       msg: "The body needs to be an array of settings ({index: number, value: number, unit: 'engine' | 'thermal'}).",
     });
   }
 
-  const results: SettingResult[] = await fetchSettings(req.body, 5, 5000);
+  const results: SettingResult[] = await updateSettings(
+    req.body.settings,
+    5,
+    req.body.options?.timeout || 5000
+  );
   const response: CommonSettingsResponse = results.every((r) => r.result)
     ? {
         status: 200,
