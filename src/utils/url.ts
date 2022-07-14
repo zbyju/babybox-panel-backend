@@ -13,6 +13,6 @@ export function actionToUrl(action: Action): string | undefined {
 
 export function unitToIp(unit: Unit): string {
   return unit === Unit.Engine
-    ? process.env.ENGINE_UNIT_UP
+    ? process.env.ENGINE_UNIT_IP
     : process.env.THERMAL_UNIT_IP;
 }

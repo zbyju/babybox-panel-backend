@@ -8,16 +8,27 @@ export interface ThermalDataBodyRequest {
   timeout?: number;
 }
 
-export interface CommonDataResponse {
-  status: number;
+export interface CommonResponse {
   msg: string;
+  status: number;
+}
+
+export interface CommonDataResponse extends CommonResponse {
   data?: any;
+}
+
+export interface CommonSettingsResponse extends CommonResponse {
+  results: SettingResult[];
 }
 
 export interface Setting {
   index: number;
   value: number;
   unit: Unit;
+}
+
+export interface SettingResult extends Setting {
+  result: boolean;
 }
 
 export function isInstanceOfSetting(object: any): object is Setting {

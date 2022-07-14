@@ -1,9 +1,17 @@
 import * as express from "express";
 import { Request, Response } from "express";
-import { isInstanceOfArraySetting } from "../types/request.types";
+import {
+  CommonSettingsResponse,
+  isInstanceOfArraySetting,
+  SettingResult,
+} from "../types/request.types";
 import { Action, Unit } from "../types/units.types";
 import { stringToAction } from "../utils/actions";
-import { fetchAction, fetchDataCommon } from "../utils/fetchDataCommon";
+import {
+  fetchAction,
+  fetchDataCommon,
+  fetchSettings,
+} from "../utils/fetchDataCommon";
 
 export const router = express.Router();
 
@@ -41,6 +49,25 @@ router.put("/settings", async (req, res) => {
     });
   }
 
-  console.log(req.body);
-  res.send("ok");
+  const results: SettingResult[] = await fetchSettings(req.body, 5, 5000);
+  const response: CommonSettingsResponse = results.every((r) => r.result)
+    ? {
+        status: 200,
+        msg: "All setting changes have been applied.",
+        results,
+      }
+    : results.every((r) => !r.result)
+    ? {
+        status: 500,
+        msg: "All setting changes failed.",
+        results,
+      }
+    : {
+        status: 206,
+        msg: "Some setting changes failed, some were successful.",
+        results,
+      };
+  return res
+    .status(response.status)
+    .send({ msg: response.msg, results: response.results });
 });
