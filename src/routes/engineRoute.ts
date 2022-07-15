@@ -2,7 +2,7 @@ import * as express from "express";
 import { Request, Response } from "express";
 
 import { Unit } from "../types/units.types";
-import { fetchDataCommon } from "../utils/fetchDataCommon";
+import { fetchDataCommon, updateWatchdog } from "../utils/fetchDataCommon";
 import { transformThermalData } from "../utils/transformData";
 
 export const router = express.Router();
@@ -28,4 +28,10 @@ router.get("/data", async (req: Request, res: Response) => {
       msg: response.msg,
     });
   }
+});
+
+router.put("/watchdog", async (req: Request, res: Response) => {
+  const response = await updateWatchdog();
+
+  return res.status(response.status).send({ msg: response.msg });
 });

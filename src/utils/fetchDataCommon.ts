@@ -2,6 +2,7 @@ import { fetchFromUrl } from "../fetch/fetch";
 import {
   CommonDataRequestQuery,
   CommonDataResponse,
+  CommonResponse,
   GetUnitSettingsRequest,
   isInstanceOfGetUnitSettingsRequest,
   Setting,
@@ -111,6 +112,23 @@ export async function fetchAction(action: Action): Promise<CommonDataResponse> {
     return {
       status: 408,
       msg: "Request timedout. The URL/IP might be wrong, check the config.",
+    };
+  }
+}
+
+export async function updateWatchdog(): Promise<CommonResponse> {
+  try {
+    const _ = await fetchFromUrl(
+      `http://${process.env.ENGINE_UNIT_IP}/sdscep?sys141=115`
+    );
+    return {
+      status: 200,
+      msg: "Successfully updated Watchdog.",
+    };
+  } catch (err) {
+    return {
+      status: 500,
+      msg: "Watchdog update was not successful.",
     };
   }
 }
