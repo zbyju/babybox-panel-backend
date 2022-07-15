@@ -10,10 +10,41 @@
 			"name": "Engine",
 			"item": [
 				{
-					"name": "GET",
+					"name": "Get Data",
 					"item": [
 						{
 							"name": "GET data - OK",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/engine/data",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"engine",
+										"data"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET raw data - OK",
 							"event": [
 								{
 									"listen": "test",
@@ -46,16 +77,40 @@
 					]
 				},
 				{
-					"name": "POST",
-					"item": []
-				},
-				{
-					"name": "UPDATE",
-					"item": []
-				},
-				{
-					"name": "DELETE",
-					"item": []
+					"name": "Update Watchdog",
+					"item": [
+						{
+							"name": "Watchdog update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/engine/watchdog",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"engine",
+										"watchdog"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -63,7 +118,7 @@
 			"name": "Thermal",
 			"item": [
 				{
-					"name": "GET",
+					"name": "Get Data",
 					"item": [
 						{
 							"name": "GET data - OK",
@@ -95,20 +150,39 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "GET raw data - OK",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Unsuccessful request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseApiUrl}}/thermal/data",
+									"host": [
+										"{{baseApiUrl}}"
+									],
+									"path": [
+										"thermal",
+										"data"
+									]
+								}
+							},
+							"response": []
 						}
 					]
-				},
-				{
-					"name": "POST",
-					"item": []
-				},
-				{
-					"name": "UPDATE",
-					"item": []
-				},
-				{
-					"name": "DELETE",
-					"item": []
 				}
 			]
 		},
@@ -122,7 +196,7 @@
 							"name": "Make Action",
 							"item": [
 								{
-									"name": "GET Open doors",
+									"name": "Open doors",
 									"event": [
 										{
 											"listen": "test",
@@ -154,7 +228,7 @@
 									"response": []
 								},
 								{
-									"name": "GET Open service doors",
+									"name": "Open service doors",
 									"event": [
 										{
 											"listen": "test",
@@ -186,7 +260,7 @@
 									"response": []
 								},
 								{
-									"name": "GET Unknown action",
+									"name": "Unknown action",
 									"event": [
 										{
 											"listen": "test",
