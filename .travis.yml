@@ -12,4 +12,6 @@ install:
 
 script:
   - pnpm test
-  - pnpm dev & pnpm test:postman
+  - pnpm dev &
+  - sleep 5000
+  - pnpm test:postman
