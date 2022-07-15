@@ -6,6 +6,7 @@
     "**/*.ts",
     "!/node_modules/",
     "!src/index.ts",
-    "!src/routes/*"
+    "!src/routes/*",
+    "!src/fetch/*"
   ]
 }
