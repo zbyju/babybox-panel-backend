@@ -1,9 +1,7 @@
-import { isFunction } from "util";
 import { fetchFromUrl } from "../fetch/fetch";
 import {
+  CommonDataRequestQuery,
   CommonDataResponse,
-  CommonResponse,
-  EngineDataBodyRequest,
   GetUnitSettingsRequest,
   isInstanceOfGetUnitSettingsRequest,
   Setting,
@@ -17,7 +15,7 @@ export async function fetchDataCommon(
   query: unknown
 ): Promise<CommonDataResponse> {
   const { timeout = parseInt(process.env.DEFAULT_FETCH_TIMEOUT) || 5000 } =
-    query as EngineDataBodyRequest;
+    query as CommonDataRequestQuery;
 
   const url = `http://${
     unit === Unit.Engine

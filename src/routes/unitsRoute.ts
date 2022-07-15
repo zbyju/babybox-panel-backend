@@ -1,11 +1,10 @@
 import * as express from "express";
-import { Request, Response } from "express";
+
 import {
   CommonSettingsResponse,
   isInstanceOfPostUnitSettingsBodyRequest,
   SettingResult,
 } from "../types/request.types";
-import { Action, Unit } from "../types/units.types";
 import { stringToAction } from "../utils/actions";
 import {
   fetchAction,

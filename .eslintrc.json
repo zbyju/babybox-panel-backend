@@ -13,10 +13,12 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["unused-imports", "simple-import-sort", "@typescript-eslint"],
   "rules": {
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
-    "@typescript-eslint/no-explicit-any": "off"
+    "unused-imports/no-unused-imports": "warn",
+    "@typescript-eslint/no-explicit-any": "off",
+    "simple-import-sort/imports": "error"
   }
 }

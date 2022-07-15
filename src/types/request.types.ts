@@ -1,12 +1,12 @@
 import { Unit } from "./units.types";
 
-export interface EngineDataBodyRequest {
+export interface CommonDataRequestQuery {
   timeout?: number;
+  raw?: boolean;
 }
 
-export interface ThermalDataBodyRequest {
-  timeout?: number;
-}
+export type EngineDataRequestQuery = CommonDataRequestQuery;
+export type ThermalDataRequestQuery = CommonDataRequestQuery;
 
 export interface PostUnitSettingsBodyRequest {
   settings: Setting[];
