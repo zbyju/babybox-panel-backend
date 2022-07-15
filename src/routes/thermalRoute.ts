@@ -1,8 +1,8 @@
 import * as express from "express";
 import { Request, Response } from "express";
 
+import { fetchDataCommon } from "../fetch/fetchFromUnits";
 import { Unit } from "../types/units.types";
-import { fetchDataCommon } from "../utils/fetchDataCommon";
 import { transformThermalData } from "../utils/transformData";
 
 export const router = express.Router();

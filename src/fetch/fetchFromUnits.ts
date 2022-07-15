@@ -1,4 +1,3 @@
-import { fetchFromUrl } from "../fetch/fetch";
 import {
   CommonDataRequestQuery,
   CommonDataResponse,
@@ -9,7 +8,8 @@ import {
   SettingResult,
 } from "../types/request.types";
 import { Action, Unit } from "../types/units.types";
-import { actionToUrl, unitToIp } from "./url";
+import { actionToUrl, unitToIp } from "../utils/url";
+import { fetchFromUrl } from "./fetch";
 
 export async function fetchDataCommon(
   unit: Unit,
