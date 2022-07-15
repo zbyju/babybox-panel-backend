@@ -10,5 +10,6 @@ function enumFromStringValue<T>(
 }
 
 export function stringToAction(str: string): Action | undefined {
+  if (!str) return undefined;
   return enumFromStringValue(Action, str.toLowerCase());
 }

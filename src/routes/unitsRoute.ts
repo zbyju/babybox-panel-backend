@@ -2,7 +2,7 @@ import * as express from "express";
 
 import {
   CommonSettingsResponse,
-  isInstanceOfPostUnitSettingsBodyRequest,
+  isInstanceOfPostUnitSettingsRequestBody,
   SettingResult,
 } from "../types/request.types";
 import { stringToAction } from "../utils/actions";
@@ -34,7 +34,7 @@ router.get("/settings", async (req, res) => {
 });
 
 router.put("/settings", async (req, res) => {
-  if (!isInstanceOfPostUnitSettingsBodyRequest(req.body)) {
+  if (!isInstanceOfPostUnitSettingsRequestBody(req.body)) {
     return res.status(400).send({
       msg: "The body needs to be an array of settings ({index: number, value: number, unit: 'engine' | 'thermal'}).",
     });

@@ -1,4 +1,4 @@
-import { Unit } from "./units.types";
+import { BothUnit, Unit } from "./units.types";
 
 export interface CommonDataRequestQuery {
   timeout?: number;
@@ -8,28 +8,35 @@ export interface CommonDataRequestQuery {
 export type EngineDataRequestQuery = CommonDataRequestQuery;
 export type ThermalDataRequestQuery = CommonDataRequestQuery;
 
-export interface PostUnitSettingsBodyRequest {
+export interface PostUnitSettingsRequestBody {
   settings: Setting[];
   options?: {
     timeout?: number;
   };
 }
 
-export function isInstanceOfPostUnitSettingsBodyRequest(
+export function isInstanceOfPostUnitSettingsRequestBody(
   object: any
-): object is PostUnitSettingsBodyRequest {
+): object is PostUnitSettingsRequestBody {
+  if (!object || typeof object !== "object") return false;
   return "settings" in object && isInstanceOfArraySetting(object.settings);
 }
 
 export interface GetUnitSettingsRequest {
-  unit?: Unit;
+  unit?: BothUnit;
   timeout?: number;
 }
 
 export function isInstanceOfGetUnitSettingsRequest(
   object: any
 ): object is GetUnitSettingsRequest {
-  if (object.unit && object.unit !== "engine" && object.unit !== "thermal") {
+  if (!object || typeof object !== "object") return false;
+  if (
+    object.unit &&
+    object.unit !== "engine" &&
+    object.unit !== "thermal" &&
+    object.unit !== "both"
+  ) {
     return false;
   }
   return true;
@@ -59,6 +66,7 @@ export interface SettingResult extends Setting {
 }
 
 export function isInstanceOfSetting(object: any): object is Setting {
+  if (!object || typeof object !== "object") return false;
   return (
     "index" in object &&
     "value" in object &&
@@ -70,6 +78,7 @@ export function isInstanceOfSetting(object: any): object is Setting {
 }
 
 export function isInstanceOfArraySetting(object: any): object is Setting[] {
+  if (!object && object !== []) return false;
   return (
     Array.isArray(object) && object.every((o: any) => isInstanceOfSetting(o))
   );
