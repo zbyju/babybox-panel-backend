@@ -4,6 +4,7 @@ node_js:
 
 install:
   - npm install -g pnpm
+  - pnpm install
 
 script:
   - pnpm test:postman
