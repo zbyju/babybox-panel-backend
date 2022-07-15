@@ -12,4 +12,4 @@ install:
 
 script:
   - pnpm test
-  - pnpm dev && pnpm test:postman
+  - pnpm dev & pnpm test:postman
