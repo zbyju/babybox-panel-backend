@@ -2,10 +2,15 @@ language: node_js
 node_js:
   - "17"
 
+cache:
+  directories:
+    - node_modules
+
 install:
   - npm install -g pnpm
   - pnpm install
   - pnpm dev
 
 script:
+  - pnpm test
   - pnpm test:postman
