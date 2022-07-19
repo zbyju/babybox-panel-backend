@@ -23,6 +23,11 @@ async function main() {
   // Parse JSON in POST requests
   app.use(express.json());
 
+  // Status route
+  app.get(process.env.API_PREFIX + "/status", (req, res) => {
+    res.status(200).send({ msg: "Alive." });
+  });
+
   //Routes
   app.use(process.env.API_PREFIX + "/units", unitsRoute);
   app.use(process.env.API_PREFIX + "/engine", engineRoute);
