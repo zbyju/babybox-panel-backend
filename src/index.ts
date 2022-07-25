@@ -25,7 +25,7 @@ async function main() {
 
   // Status route
   app.get(process.env.API_PREFIX + "/status", (req, res) => {
-    res.status(200).send({ msg: "Alive." });
+    res.status(200).send({ msg: "Alive.", version: process.env.VERSION || "Unknown" });
   });
 
   //Routes
