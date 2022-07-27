@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/index.ts",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon",
+    "dev": "nodemon",
     "lint": "eslint --fix --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "test": "jest",
@@ -12,7 +12,7 @@
     "test:postman": "newman run ./src/routes/__postman__/babybox-panel.postman_collection.json -e ./src/routes/__postman__/BabyboxPanel.postman_environment.json",
     "build": "pnpm update && rm -rf ./dist && tsc && pnpm -C ../babybox/ run build",
     "update": "git restore . && git pull && pnpm install && pnpm -C ../babybox/ run update",
-    "start": "pnpm build && NODE_ENV=production node './dist/index.js'"
+    "start": "pnpm build && node './dist/index.js'"
   },
   "keywords": [],
   "author": "",
