@@ -6,16 +6,22 @@ import * as morgan from "morgan";
 import { router as engineRoute } from "./routes/engineRoute";
 import { router as thermalRoute } from "./routes/thermalRoute";
 import { router as unitsRoute } from "./routes/unitsRoute";
+import { checkInit } from "./utils/checkInit";
 
 async function main() {
   // .env file load
   dotenv.config();
 
+  // Check if .env file is ok, and server can run
+  checkInit();
+
   const app = express();
   const port = process.env.PORT || 5000;
 
   // Setup logger - morgan
-  app.use(morgan("dev"));
+  if (process.env.NODE_ENV === "development") {
+    app.use(morgan("dev"));
+  }
 
   // Allow cors
   app.use(cors());
@@ -38,8 +44,22 @@ async function main() {
   app.use(process.env.API_PREFIX + "/engine", engineRoute);
   app.use(process.env.API_PREFIX + "/thermal", thermalRoute);
 
+  // Serve Frontend app if running in production
+  if (process.env.NODE_ENV === "production") {
+    app.get(/\/panel[/.*]$/, (req, res) => {
+      res.sendFile(__dirname + "/public/index.html");
+    });
+  }
+
   app.listen(port, () => {
-    console.log(`Babybox backend listening on port ${port}`);
+    const color =
+      process.env.NODE_ENV === "production" ? "\x1b[32m" : "\x1b[35m";
+
+    console.log(
+      `Babybox backend running in ${color}\x1b[1m%s\x1b[0m and listening on port \x1b[1m%s`,
+      process.env.NODE_ENV,
+      port
+    );
   });
 }
 
