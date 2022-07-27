@@ -10,7 +10,8 @@
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "test:postman": "newman run ./src/routes/__postman__/babybox-panel.postman_collection.json -e ./src/routes/__postman__/BabyboxPanel.postman_environment.json",
-    "build": "rm -rf ./dist && tsc",
+    "build": "pnpm update && rm -rf ./dist && tsc && pnpm -C ../babybox/ run build",
+    "update": "git restore . && git pull && pnpm install",
     "start": "pnpm build && NODE_ENV=production node './dist/index.js'"
   },
   "keywords": [],
